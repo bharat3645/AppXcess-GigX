@@ -23,13 +23,13 @@ Welcome to the Task Tokenizer project! This repository contains a full-stack dec
 Here are some screenshots showcasing the Task Tokenizer platform in action:
 
 ### Recently Active Freelancers
-![Recently Active Freelancers](./demo-screenshots/recently-active.png)
+![Recently Active Freelancers](./1.png)
 
 ### Home / Contributors Page
-![Contributors Page](./demo-screenshots/home-contributors.png)
+![Contributors Page](./2.png)
 
 ### Browse by Skills
-![Browse by Skills](./demo-screenshots/skills-browse.png)
+![Browse by Skills](./3.png)
 
 ---
 
