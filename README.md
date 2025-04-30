@@ -1,4 +1,4 @@
-# Task Tokenizer Web App
+# GigX Web App
 
 Welcome to the Task Tokenizer project! This repository contains a full-stack decentralized freelance job marketplace, built with Next.js, Hardhat, and Solidity smart contracts. This guide will walk you through everything you need to know to get started, even if you're new to web development, Ethereum, or Docker.
 
