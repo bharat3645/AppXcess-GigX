@@ -18,6 +18,21 @@ Welcome to the Task Tokenizer project! This repository contains a full-stack dec
 
 ---
 
+## Demo
+
+Here are some screenshots showcasing the Task Tokenizer platform in action:
+
+### Recently Active Freelancers
+![Recently Active Freelancers](./demo-screenshots/recently-active.png)
+
+### Home / Contributors Page
+![Contributors Page](./demo-screenshots/home-contributors.png)
+
+### Browse by Skills
+![Browse by Skills](./demo-screenshots/skills-browse.png)
+
+---
+
 ## Features
 - Decentralized freelance job marketplace
 - Ethereum smart contracts for jobs, identity, reputation, and escrow
