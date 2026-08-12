@@ -22,26 +22,37 @@ interface Job {
   budget: string;
   isOpen: boolean;
   freelancer: string;
+  fundsReleased: boolean;
+  isCancelled: boolean;
+}
+
+// Field order here MUST match the JobDetail struct in contracts/Job.sol —
+// ethers decodes the getter's return data positionally against this list.
+const CONTRACT_ABI = [
+  "function jobCounter() view returns (uint256)",
+  "function jobs(uint256) view returns (address client, string description, uint256 budget, bool isOpen, address freelancer, bool fundsReleased, uint256 acceptedAt, bool isCancelled)",
+];
+
+function jobStatus(job: Job): { label: string; className: string } {
+  if (job.isCancelled) return { label: "Cancelled", className: "bg-gray-400" };
+  if (job.fundsReleased) return { label: "Completed", className: "bg-blue-400" };
+  if (job.isOpen) return { label: "Open", className: "bg-green-400" };
+  return { label: "In Progress", className: "bg-yellow-500" };
 }
 
 export default function JobsPage() {
   const [jobs, setJobs] = useState<Job[]>([]);
   const [loading, setLoading] = useState(true);
   const { account, signer, connectWallet } = useWallet();
-  const providerUrl = process.env.NEXT_PUBLIC_PROVIDER_URL ?? `https://sepolia.infura.io/v3/26dbdcda81b64b77acb2273c0aa828dd`;
-  const provider = new ethers.providers.JsonRpcProvider(providerUrl);
-
+  const providerUrl = process.env.NEXT_PUBLIC_PROVIDER_URL;
   const contractAddress = process.env.NEXT_PUBLIC_CONTRACT_ADDRESS;
-  const contractAbi = [
-    "function jobCounter() view returns (uint256)",
-    "function jobs(uint256) view returns (address client, string description, uint256 budget, bool isOpen, address freelancer)",
-  ];
+  const contractAbi = CONTRACT_ABI;
 
   useEffect(() => {
     const fetchJobs = async () => {
       setLoading(true);
-      if (!provider) {
-        console.error("Provider not available");
+      if (!providerUrl) {
+        console.error("NEXT_PUBLIC_PROVIDER_URL is not set");
         setLoading(false);
         return;
       }
@@ -51,6 +62,7 @@ export default function JobsPage() {
         return;
       }
       try {
+        const provider = new ethers.providers.JsonRpcProvider(providerUrl);
         const contract = new ethers.Contract(contractAddress, contractAbi, provider);
         const jobCountBN = await contract.jobCounter();
         const jobCount = jobCountBN.toNumber();
@@ -65,6 +77,8 @@ export default function JobsPage() {
               budget: ethers.utils.formatEther(jobData.budget),
               isOpen: jobData.isOpen,
               freelancer: jobData.freelancer,
+              fundsReleased: jobData.fundsReleased,
+              isCancelled: jobData.isCancelled,
             });
           } catch (err) {
             console.warn(`Error fetching job ${i}:`, err);
@@ -130,13 +144,9 @@ export default function JobsPage() {
                       <LockKeyhole size={18} />
                     )}
                     <span
-                      className={`${
-                        gig?.isOpen ? "bg-green-400" : "bg-red-400"
-                      } px-4 rounded-xl text-xs text-[#FFFFFF]`}
+                      className={`${jobStatus(gig).className} px-4 rounded-xl text-xs text-[#FFFFFF]`}
                     >
-                      {gig?.isOpen
-                        ? "Open"
-                        : `Accepted by: ${gig.freelancer} `}
+                      {jobStatus(gig).label}
                     </span>
                   </div>
                 </div>

@@ -17,8 +17,10 @@ async function main() {
   console.log("✅ Job Contract Deployed at:", await job.getAddress());
 
 
+  // Reputation is wired to the Job contract's address so it can verify
+  // ratings against real, paid-out jobs — deploy it after Job.
   const Reputation = await ethers.getContractFactory("Reputation");
-  const reputation = await Reputation.deploy();
+  const reputation = await Reputation.deploy(await job.getAddress());
   await reputation.waitForDeployment();
   console.log("✅ Reputation Contract Deployed at:", await reputation.getAddress());
 
@@ -38,7 +40,7 @@ async function main() {
     { description: "Create an API integration", budget: ethers.parseEther("0.15") },
   ];
   for (const { description, budget } of demoJobs) {
-    const tx = await job.postJob(description, budget);
+    const tx = await job.postJob(description, budget, { value: budget });
     await tx.wait();
     console.log(`✅ Demo job posted: ${description}`);
   }

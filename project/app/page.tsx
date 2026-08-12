@@ -164,7 +164,7 @@ export default function Home() {
             </span>
           </h1>
           <p className="mx-auto mt-4 max-w-2xl text-center text-xl text-muted-foreground mb-16">
-            "Empowering talent globally through blockchain technology, creating a borderless ecosystem for the future of work."
+            &quot;Empowering talent globally through blockchain technology, creating a borderless ecosystem for the future of work.&quot;
           </p>
 
           {/* Contributors Section */}

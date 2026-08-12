@@ -29,7 +29,7 @@ export default function Job2() {
 
         <div className="mb-8 space-y-4 text-muted-foreground">
           <p>
-            We're looking for a creative UI/UX designer to help craft unique and engaging user interfaces for our upcoming NFT marketplace. This role combines web3 knowledge with cutting-edge design principles.
+            We&apos;re looking for a creative UI/UX designer to help craft unique and engaging user interfaces for our upcoming NFT marketplace. This role combines web3 knowledge with cutting-edge design principles.
           </p>
 
           <h2 className="text-xl font-semibold text-foreground">Requirements:</h2>

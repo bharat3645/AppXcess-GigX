@@ -1,7 +1,15 @@
 {
-  "name": "nextjs",
+  "name": "gigx-frontend",
   "version": "0.1.0",
   "private": true,
+  "description": "Next.js frontend for GigX — a decentralized freelance job marketplace with on-chain escrow.",
+  "author": "bharat3645",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bharat3645/AppXcess-GigX.git",
+    "directory": "project"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -69,5 +77,9 @@
     "typescript": "5.2.2",
     "vaul": "^0.9.9",
     "zod": "^3.23.8"
+  },
+  "allowScripts": {
+    "sharp@0.34.1": true,
+    "unrs-resolver@1.7.1": true
   }
 }

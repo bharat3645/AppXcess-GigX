@@ -43,10 +43,10 @@ export default function CategoriesPage() {
     <main className="min-h-screen  p-4 md:p-6 lg:p-8">
       <div className="mx-auto max-w-7xl">
         <div className="mb-8">
-          <Link href="/browse">
+          <Link href="/">
             <Button variant="ghost" className="text-white">
               <ArrowLeft className="mr-2 h-4 w-4" />
-              Back to Browse
+              Back to Home
             </Button>
           </Link>
           <h1 className="mt-4 text-3xl font-bold text-white">Browse by Category</h1>

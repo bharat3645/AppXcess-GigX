@@ -33,8 +33,13 @@ const activeFreelancers: Freelancer[] = [
   },
 ];
 
-export default function FreelancerProfilePage({ params }: { params: { id: string } }) {
-  const id = Number(params.id);
+export default async function FreelancerProfilePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: idParam } = await params;
+  const id = Number(idParam);
   const freelancer = activeFreelancers.find((f) => f.id === id);
 
   if (!freelancer) {

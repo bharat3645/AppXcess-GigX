@@ -22,8 +22,13 @@ const topFreelancers: Freelancer[] = [
   { id: 5, name: "Michael Brown", rating: 4.5, completedJobs: 95, skills: ["Smart Contract Audits", "Security", "Solidity"], image: "/placeholder.svg?height=40&width=40" },
 ];
 
-export default function FreelancerProfilePage({ params }: { params: { id: string } }) {
-  const id = Number(params.id);
+export default async function FreelancerProfilePage({
+  params,
+}: {
+  params: Promise<{ id: string }>;
+}) {
+  const { id: idParam } = await params;
+  const id = Number(idParam);
   const freelancer = topFreelancers.find((f) => f.id === id);
 
   if (!freelancer) {
